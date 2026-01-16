@@ -9,7 +9,7 @@ ThemeData buildDarkTheme() {
 
   return base.copyWith(
     scaffoldBackgroundColor: const Color(0xFF0D0F12),
-    cardTheme: const CardTheme(
+    cardTheme: const CardThemeData(
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       elevation: 1,
     ),

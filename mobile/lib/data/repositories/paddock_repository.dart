@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:paddock/data/api_client.dart';
 import 'package:paddock/data/api_exception.dart';
 import 'package:paddock/domain/models/paddock.dart';
@@ -63,8 +61,3 @@ class PaddockRepository {
     return Paddock.fromJson(decodeJson(response.body));
   }
 }
-
-final paddockRepositoryProvider = Provider<PaddockRepository>((ref) {
-  final client = ref.watch(apiClientProvider);
-  return PaddockRepository(client);
-});

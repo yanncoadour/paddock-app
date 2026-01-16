@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+import 'package:paddock/data/api_client.dart';
 import 'package:paddock/data/repositories/auth_repository.dart';
 import 'package:paddock/data/repositories/gp_repository.dart';
 import 'package:paddock/data/repositories/paddock_repository.dart';
@@ -16,6 +17,17 @@ import 'package:paddock/domain/models/user.dart';
 final tokenStorageProvider = Provider<TokenStorage>((ref) {
   const storage = FlutterSecureStorage();
   return TokenStorage(storage);
+});
+
+final authRepositoryProvider = Provider<AuthRepository>((ref) {
+  final client = ref.watch(apiClientProvider);
+  final tokenStorage = ref.watch(tokenStorageProvider);
+  return AuthRepository(client, tokenStorage);
+});
+
+final paddockRepositoryProvider = Provider<PaddockRepository>((ref) {
+  final client = ref.watch(apiClientProvider);
+  return PaddockRepository(client);
 });
 
 class AuthController extends StateNotifier<AsyncValue<User?>> {

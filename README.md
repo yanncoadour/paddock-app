@@ -22,6 +22,12 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
+Pour charger le calendrier complet 2026:
+
+```bash
+python backend/scripts/seed_2026_calendar.py
+```
+
 ## Mobile (Flutter)
 
 ```bash

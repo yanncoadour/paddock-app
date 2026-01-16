@@ -2,6 +2,7 @@ import os
 
 from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
+from sqlalchemy.orm import declarative_base, sessionmaker
 
 
 def get_database_url() -> str:
@@ -13,3 +14,7 @@ def get_database_url() -> str:
 
 def get_engine() -> Engine:
     return create_engine(get_database_url())
+
+
+SessionLocal = sessionmaker(bind=get_engine())
+Base = declarative_base()
